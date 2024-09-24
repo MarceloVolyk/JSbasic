@@ -1,18 +1,38 @@
-//npm - global command, comes with node
-//npm --version 
+const {readFile, writeFile} = require('fs').promises
+const { reject } = require('lodash')
+const { resolve } = require('path')
+//const util = require('util')
+//const readFilePromise = util.promisify(readFile)
+//const writeFilePromise = util.promisify(writeFile)
 
-//local dependancy - use it only for this particular project
-//npm i <packageName>
 
-//global dependancy - use it in any project
-//npm install -g <packageName>
+const start = async() => {
+    try {
+        const first = await readFile('./content/first.txt', 'utf8')
+        const second = await readFile('./content/second.txt', 'utf8')
+        await writeFile('./content/resultPromise.txt', `THIS IS AWESOME: ${first}, ${second}`, {flag:'a'})
+        console.log(first, second)        
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-//package.json - manifest file (stores important info about project/package)
-//manual approach: npm init
-//default approach (automatic): npm init -y
+start()
 
-//Gitignore will not upload "node_modules" to github
-//All installed node modules will be logged in the package.json file, under "dependencies"
-//When someone pulls this project from github, the person will just need to type "npm install" in the console,
-//and all modules listed under dependecies in package.json will be installed
-const _ = require('lodash')
+// const getText = (path) => {
+//     return new Promise((resolve, reject) => {
+//         readFile(path, 'utf8', (err, data) => {
+//             if (err) {
+//                 reject(err)
+//             }
+//             else{
+//                 resolve(data)
+//             }
+//         })
+//     })
+// }
+
+
+// getText('./content/first.txt')
+// .then((result) => console.log(result))
+// .catch((err) => console.log(err))
