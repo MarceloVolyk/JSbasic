@@ -8,7 +8,7 @@ const start = async () => {
     const first = await readFile('./content/first.txt', 'utf8')
     const second = await readFile('./content/second.txt', 'utf8')
     await writeFile(
-      './content/result-mind-grenade.txt',
+      './content/resultPromise.txt',
       `THIS IS AWESOME : ${first} ${second}`,
       { flag: 'a' }
     )
@@ -31,6 +31,8 @@ start()
 //     })
 //   })
 // }
+
+
 // getText('./content/first.txt')
 //   .then((result) => console.log(result))
 //   .catch((err) => console.log(err))
